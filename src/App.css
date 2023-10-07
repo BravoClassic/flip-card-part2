@@ -1,0 +1,72 @@
+#root {
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.flash-card{
+  width: 300px;
+  height: 300px;
+  color: #333;
+  perspective: 1000px;
+}
+
+.flash-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.1s;
+  transform-style: preserve-3d;
+}
+
+.flash-card.active .flash-inner{
+  transform: rotateX(180deg);
+}
+
+.flash-front, .flash-back{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flash-front{
+  background-color: beige;
+}
+
+.flash-back{
+  background-color: beige;
+  color: #333;
+  transform: rotateX(180deg);
+}
+
+.wrong{
+  border: 1px solid tomato;
+  /* border-color: tomato; */
+}
+
+.correct{
+  border: 1px solid limegreen;
+  /* border-color: limegreen; */
+}
+
+.category{
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+img{
+  box-shadow: 0 0 100px rgba(0,0,0,0.2);
+  background-color: transparent;
+}

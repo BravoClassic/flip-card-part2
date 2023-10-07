@@ -42,6 +42,7 @@ function App() {
     setShuffled(shuffled);
     setData(shuffled);
     setCurrentCard(0);
+    console.log(data);
   };
 
   const previousCard = () => {
@@ -67,6 +68,11 @@ function App() {
     }
   }, [currentCard]);
 
+  useEffect(() => {
+    setShuffled([...d[currentDeck]]);
+    setData([...d[currentDeck]]);
+  }
+  , [currentDeck]);
   const levenshteindistance = (guess, word) => {
     let distance = [];
     for (let i = 0; i <= guess.length; i++) {
@@ -89,12 +95,16 @@ function App() {
   const userScore = (e) => {
     e.preventDefault();
     console.log("User Score");
+    if (guess.current.value === "") {
+      return;
+    }
     let similarity = levenshteindistance(
       guess.current.value,
       data[currentCard].capital
     );
 
     console.log(similarity);
+    
     if (guess.current.value === data[currentCard].capital) {
       setScore(score + 1);
       if (guess.current.classList.contains("wrong")) {
@@ -157,7 +167,7 @@ function App() {
         <button onClick={shuffleCards}>Shuffle Cards</button>
       </div>
       <div>
-        <h3>Catergories</h3>
+        <h3>Select a Contient</h3>
         {keys.map((item, key) => {
           return (
             <Button changeDeck={changeDeck} key={key} value={key} name={item} />
